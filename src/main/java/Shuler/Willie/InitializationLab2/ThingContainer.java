@@ -42,10 +42,10 @@ public class ThingContainer {
 
         for (int i = 0; i < colorfulThings.length; i++) {
 
-            if (colorfulThings[i] != null){
+            if (colorfulThings[i] != null) {
 
-            System.out.println(colorfulThings[i].getColor());
-        }
+                System.out.println(colorfulThings[i].getColor());
+            }
         }
         System.out.println("\n");
     }
@@ -66,11 +66,50 @@ public class ThingContainer {
         }
         return null;
     }
-//Remove the first element of that color from the array and return it
-    public void remove(){
 
+    //Remove the first element of that color from the array and return it
+    public ColorfulThing.Color remove(ColorfulThing.Color colorRemoved) {
 
+        //We call the remove method with a Color value from the enumerated type in ColorfulThing. Remove the first element of
+// that color from the array and return it. Return null if the ThingContainer does not contain a ColorfulThing of that
+// color.
+        ColorfulThing.Color colorPop = null;
+        for (int i = 0; i < colorfulThings.length; i++) {
 
+            if (colorRemoved.equals(colorfulThings[i].getColor())) {
 
+                colorPop = colorRemoved;
+                colorfulThings[i] = null;
+                arrayShift();
+                return colorPop;
+
+            }
+        }
+        return null;
+    }
+
+    public void arrayShift() {
+        int i;
+        for (i = 0; i < colorfulThings.length - 1; i++) {
+            if (colorfulThings[i] == null) {
+                colorfulThings[i] = colorfulThings[i + 1];
+                colorfulThings[i + 1] = null;
+            }
+        }
+    }
+
+    public ColorfulThing remove(ColorfulThing colorfulThing) {
+        int i;
+        ColorfulThing removesColor = null;
+        for (i = 0; i < colorfulThings.length; i++) {
+
+            if (colorfulThings[i].toString().equals(colorfulThing.toString())) {
+                removesColor = colorfulThing;
+                colorfulThings[i] = null;
+                break;
+            }
+        }
+        arrayShift();
+        return removesColor;
     }
 }
